@@ -1,8 +1,19 @@
 # Docker Cheatsheet
-Location of docker installation:  
-`/var/lib/docker`
-## Getting Started
+
+## Directories
+|Folder|Description|
+|---|---|
+|Docker Installation|`/var/lib/docker`|
+|Docker Volume|`/var/lib/docker/volumes`|
+
+
+## Installing Docker
+```bash
+curl https://get.docker.com | sh && sudo systemctl --now enable docker
 ```
+
+## Getting Started
+```bash
 docker run
     CMD sleep 5 #Overrides CLI
     ENTRYPOINT ['sleep'] #Appends subsequent
@@ -11,19 +22,43 @@ docker run
 ```
 
 ## Networking
-```
+```bash
 docker network create
 
 docker network
 ```
-## Building Images
+
+## Docker Volume
+```bash
+docker volume create
+docker volume prune
+docker volume rm
+
+docker volume inspect
+docker volume ls
 ```
+
+## Building Images
+
+### Dockerfile instructions
+* FROM
+* ENV
+* LABEL
+* USER
+* COPY
+* EXPOSE
+* CMD
+
+Refer to [Dockerfile](https://docs.docker.com/engine/reference/builder)
+
+### Building the image
+```bash
 docker build .
 -t LOCAL:NAME   #Tagging images
 ```
 
 ## Managing images
-```
+```bash
 docker image pull       #Pull an image from docker repo
 docker image push       #Push an image to docker repo
 
@@ -39,7 +74,7 @@ docker prune            #Remove all unused image
 ```
 
 ## Managing containers
-```
+```bash
 docker container create IMAGE   #Create container from image
 
 docker container start
@@ -63,7 +98,7 @@ docker container exec -it CONTAINER CMDS
 ## Frequently Used Docker Images
 
 ### MySQL: https://hub.docker.com/_/mysql
-```
+```bash
 docker run --name my-mysql -d \
     -e MYSQL_ROOT_PASSWORD=$PASSWORD \
     -p 3306:3306 \
@@ -75,7 +110,7 @@ mysql:latest
 ```
 
 ### PostgreSQL: https://hub.docker.com/_/postgres
-```
+```bash
 docker run --name my-postgres -d \
     -e POSTGRES_PASSWORD=mysecretpassword \
     -e PGDATA=/var/lib/postgresql/data/pgdata \
@@ -85,7 +120,7 @@ postgres:latest
 ```
 
 ### MongoDB: https://hub.docker.com/_/mongo
-```
+```bash
 docker run --name my-mongo -d \
     -e MONGO_INITDB_ROOT_USERNAME=mongoadmin \
     -e MONGO_INITDB_ROOT_PASSWORD=secret \
@@ -95,7 +130,7 @@ mongo:latest
 ```
 
 ### Redis: https://hub.docker.com/_/redis
-```
+```bash
 docker run --name my-redis -d \
     -p 6379:6379 \
     -v /myredis/conf/redis.conf:/usr/local/etc/redis/redis.conf \

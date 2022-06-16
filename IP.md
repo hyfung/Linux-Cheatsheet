@@ -1,4 +1,4 @@
-# ip Command Cheatsheet
+# IP Command Cheatsheet
 
 ## IP queries
 `ip addr`  

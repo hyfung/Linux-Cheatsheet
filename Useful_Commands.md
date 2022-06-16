@@ -266,7 +266,7 @@ sudo systemctl start gdm3
 Show kernel ring buffer
 > `dmesg`
 
-## PythonQT
+## PythonQt
 
 ```bash
 sudo apt install Qtcreator
